@@ -52,7 +52,7 @@ public class DynamicLightNativeImage implements AutoCloseable {
     }
 
     private static void setFilter(boolean p_85082_, boolean p_85083_) {
-        RenderSystem.assertOnRenderThreadOrInit();
+        RenderSystem.assertThread(RenderSystem::isOnRenderThreadOrInit);
         if (p_85082_) {
             GlStateManager._texParameter(3553, 10241, p_85083_ ? 9987 : 9729);
             GlStateManager._texParameter(3553, 10240, 9729);
@@ -103,7 +103,7 @@ public class DynamicLightNativeImage implements AutoCloseable {
     }
 
     private void _upload(int level, int width, int height, boolean p_85098_, boolean p_85100_) {
-        RenderSystem.assertOnRenderThreadOrInit();
+        RenderSystem.assertThread(RenderSystem::isOnRenderThreadOrInit);
         this.checkAllocated();
         setFilter(p_85098_, p_85100_);
         RenderSystem.disableBlend();

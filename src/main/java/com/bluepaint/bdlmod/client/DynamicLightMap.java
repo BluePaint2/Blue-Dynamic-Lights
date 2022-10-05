@@ -14,7 +14,7 @@ public class DynamicLightMap extends AbstractTexture {
     private DynamicLightNativeImage pixels;
 
     public DynamicLightMap(int p_117980_, int p_117981_) {
-        RenderSystem.assertOnGameThreadOrInit();
+        RenderSystem.assertThread(RenderSystem::isOnGameThreadOrInit);
         this.pixels = new DynamicLightNativeImage(p_117980_, p_117981_);
         LightUtil.prepareImage(this.getId(), this.pixels.getWidth(), this.pixels.getHeight());
     }

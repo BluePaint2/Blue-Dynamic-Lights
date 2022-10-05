@@ -41,7 +41,7 @@ public abstract class MixinShaderInstance {
 
     @Inject(method = "apply", at = @At("HEAD"))
     public void apply(CallbackInfo ci) {
-        RenderSystem.assertOnRenderThread();
+        RenderSystem.assertThread(RenderSystem::isOnRenderThread);
         Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
         if (NUM_LIGHTS != null) {
             NUM_LIGHTS.set(BlueDynamicLightsMod.getDynamicLightAmount());

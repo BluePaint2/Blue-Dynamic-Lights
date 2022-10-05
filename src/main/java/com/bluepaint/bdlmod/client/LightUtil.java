@@ -30,7 +30,7 @@ public class LightUtil {
     }
 
     public static void prepareImage(int p_85299_, int p_85301_, int p_85302_) {
-        RenderSystem.assertOnRenderThreadOrInit();
+        RenderSystem.assertThread(RenderSystem::isOnRenderThreadOrInit);
         bind(p_85299_);
         GlStateManager._texParameter(3553, 33085, 0);
         GlStateManager._texParameter(3553, 33082, 0);
@@ -40,7 +40,7 @@ public class LightUtil {
     }
 
     private static void bind(int p_85310_) {
-        RenderSystem.assertOnRenderThreadOrInit();
+        RenderSystem.assertThread(RenderSystem::isOnRenderThreadOrInit);
         GlStateManager._bindTexture(p_85310_);
     }
 }
