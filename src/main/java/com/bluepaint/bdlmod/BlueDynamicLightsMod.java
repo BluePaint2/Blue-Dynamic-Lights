@@ -45,9 +45,6 @@ public class BlueDynamicLightsMod {
         LightUtil.light(Items.SMALL_AMETHYST_BUD,new Color(207, 160, 243),1f,15f);
         LightUtil.light(Items.MEDIUM_AMETHYST_BUD,new Color(207, 160, 243),2f,15f);
         LightUtil.light(Items.LARGE_AMETHYST_BUD,new Color(207, 160, 243),4f,15f);
-        LightUtil.light(Items.OCHRE_FROGLIGHT,new Color(233, 206, 133),15f,15f);
-        LightUtil.light(Items.PEARLESCENT_FROGLIGHT,new Color(213, 191, 201),15f,15f);
-        LightUtil.light(Items.VERDANT_FROGLIGHT,new Color(161, 211, 155),15f,15f);
     }
 
     public static int getDynamicLightAmount() {
