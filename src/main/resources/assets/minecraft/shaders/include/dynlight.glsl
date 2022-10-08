@@ -1,9 +1,7 @@
 #version 150
 
-vec4 bdlmod_mix_block_light(sampler2D s2d, int nls, vec3 ld0, vec3 ld1, vec3 p, vec3 cp, vec3 n) {
+vec4 bdlmod_mix_block_light(sampler2D s2d, int nls, vec3 p, vec3 cp, vec3 n) {
     vec3 lC = vec3(0.0);
-    float l0 = max(0.0, dot(normalize(ld0), n));
-    float l1 = max(0.0, dot(normalize(ld1), n));
     for(int i=0; i < nls; i++) {
         vec4 lightLocation = texelFetch(s2d,ivec2(2*i,0),0);
         vec4 color = texelFetch(s2d,ivec2(2*i+1,0),0);
