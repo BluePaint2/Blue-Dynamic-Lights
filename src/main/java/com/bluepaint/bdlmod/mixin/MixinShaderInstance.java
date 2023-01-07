@@ -4,12 +4,12 @@ import com.bluepaint.bdlmod.BlueDynamicLightsMod;
 import com.mojang.blaze3d.shaders.Uniform;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.VertexFormat;
-import com.mojang.math.Vector3f;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceProvider;
+import org.joml.Vector3f;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -44,7 +44,7 @@ public abstract class MixinShaderInstance {
             NUM_LIGHTS.set(BlueDynamicLightsMod.getDynamicLightAmount());
         }
         if (CAM_POS != null) {
-            CAM_POS.set(new Vector3f(camera.getPosition()));
+            CAM_POS.set(new Vector3f((float) camera.getPosition().x, (float) camera.getPosition().y, (float) camera.getPosition().z));
         }
     }
 }
