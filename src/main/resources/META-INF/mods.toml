@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[43,)"
+loaderVersion="[45,)"
 license="MIT"
 
 [[mods]]
@@ -17,13 +17,13 @@ Light up your world.'''
 [[dependencies.bdlmod]]
     modId="forge"
     mandatory=true
-    versionRange="[43.1.1,)"
+    versionRange="[45.2.0,)"
     ordering="AFTER"
     side="CLIENT"
 
 [[dependencies.bdlmod]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19.2,1.20)"
+    versionRange="[1.19.4,1.20)"
     ordering="NONE"
     side="BOTH"

@@ -1,5 +1,6 @@
 #version 150
 
+#moj_import <fog.glsl>
 #moj_import <light.glsl>
 #moj_import <dynlight.glsl>
 
@@ -15,10 +16,11 @@ uniform sampler2D Sampler3;
 
 uniform mat4 ModelViewMat;
 uniform mat4 ProjMat;
+uniform mat3 IViewRotMat;
+uniform int FogShape;
 
 uniform int NumLights;
 uniform vec3 CamPos;
-uniform mat4 CamRot;
 
 uniform vec3 Light0_Direction;
 uniform vec3 Light1_Direction;
@@ -33,9 +35,9 @@ out vec4 normal;
 void main() {
     gl_Position = ProjMat * ModelViewMat * vec4(Position, 1.0);
 
-    vertexDistance = length((ModelViewMat * vec4(Position, 1.0)).xyz);
-    vec4 lightAccum = bdlmod_mix_entity_light(Sampler3, NumLights, Position, CamPos, CamRot);
-    vertexColor = minecraft_mix_light(Light0_Direction, Light1_Direction, Normal, Color) * (texelFetch(Sampler2, UV2 / 16, 0)+ lightAccum);
+    vertexDistance = fog_distance(ModelViewMat, IViewRotMat * Position, FogShape);
+    vec4 lightAccum = bdlmod_mix_light(Sampler3, NumLights, IViewRotMat * Position, CamPos);
+    vertexColor = minecraft_mix_light(Light0_Direction, Light1_Direction, Normal, Color) * (texelFetch(Sampler2, UV2 / 16, 0) + (UV2.x == 240 ? vec4(0.0) : lightAccum));
     texCoord0 = UV0;
     texCoord1 = UV1;
     texCoord2 = UV2;

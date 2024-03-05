@@ -1,6 +1,8 @@
 package com.bluepaint.bdlmod.client;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.awt.*;
@@ -78,5 +80,22 @@ public class Light {
     @Override
     public int hashCode() {
         return Objects.hash(color, intensity, attenuation);
+    }
+
+    public String getTag() {
+        CompoundTag compoundTag = new CompoundTag();
+        if (this.attenuation > 0f) {
+            compoundTag.putFloat("attenuation", this.attenuation);
+        }
+        if (this.intensity > 0f) {
+            compoundTag.putFloat("intensity", this.intensity);
+        }
+        compoundTag.putInt("color_B",this.color.getBlue());
+        compoundTag.putInt("color_G",this.color.getGreen());
+        compoundTag.putInt("color_R",this.color.getRed());
+        if (this.item != null) {
+            compoundTag.putString("item", ForgeRegistries.ITEMS.getKey(this.item.asItem()).toString());
+        }
+        return compoundTag.toString();
     }
 }

@@ -17,9 +17,6 @@ uniform mat4 ProjMat;
 uniform int NumLights;
 uniform vec3 CamPos;
 
-uniform vec3 Light0_Direction;
-uniform vec3 Light1_Direction;
-
 out vec4 vertexColor;
 out vec2 texCoord0;
 out vec4 normal;
@@ -27,7 +24,7 @@ out vec4 normal;
 void main() {
     gl_Position = ProjMat * ModelViewMat * vec4(Position, 1.0);
 
-    vec4 lightAccum = bdlmod_mix_block_light(Sampler3, NumLights, Light0_Direction,Light1_Direction, Position, CamPos, Normal); //causes darkness only when before sampler 2 (doesnt need to be applied)
+    vec4 lightAccum = bdlmod_mix_light(Sampler3, NumLights, Position, CamPos);
     vertexColor = Color * (texelFetch(Sampler2, UV2 / 16, 0) + lightAccum);
     texCoord0 = UV0;
     normal = ProjMat * ModelViewMat * vec4(Normal, 0.0);

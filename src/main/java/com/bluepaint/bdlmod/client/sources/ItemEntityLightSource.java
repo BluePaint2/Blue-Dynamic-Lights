@@ -9,13 +9,16 @@ import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
+import net.minecraftforge.fml.common.Mod;
 
 import java.awt.*;
 import java.util.Objects;
 
+@Mod.EventBusSubscriber(modid = BlueDynamicLightsMod.MODID,value = Dist.CLIENT,bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ItemEntityLightSource implements IDynamicLightSource {
 
     private final ItemEntity itemEntity;
